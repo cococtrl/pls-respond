@@ -1,0 +1,30 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    justify-content: space-around;
+    background-color: #531CB3;
+}
+
+.navbar h1 {
+    font-family: 'Lacquer', sans-serif;
+    font-size: 2rem;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar ul li {
+    margin: 1rem;
+}
+
+.navbar ul li:hover {
+    border-bottom: 2px solid beige;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #DEFFFC;
+}
