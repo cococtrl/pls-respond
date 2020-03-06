@@ -15,6 +15,10 @@ const userSchema = new Schema({
     password: String
 }, { timestamps:true });
 
+userSchema.methods.comparePassword = function(tryPassword, callback) {
+    bcrypt.compare(tryPassword, this.password, callback)
+}
+
 userSchema.set('toJSON', {
 transform: function(doc, ret) {
     delete ret.password
@@ -23,7 +27,6 @@ transform: function(doc, ret) {
     delete ret.__v
     }  
 })
-
 userSchema.pre('save', function(next){
     const user = this;
     if(!user.isModified('password')) return next();

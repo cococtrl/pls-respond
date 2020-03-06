@@ -40,11 +40,14 @@ class App extends Component {
             }/>
             <Route exact path="/events" render={props =>
             userService.getUser()
-            ? <Events />
+            ? <Events {...props}/>
             : <Redirect to="/login" />
           }/>
             <Route exact path="/login" render={props => 
-              <Login />
+              <Login 
+              {...props}
+              handleSignupOrLogin={this.handleSignupOrLogin}
+              />
             }/>
             <Route exact path="/signup" render={props =>
             <Signup 
