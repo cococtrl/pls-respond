@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styles from './LoginForm.module.css';
 
+import userService from '../../utils/userService';
+
 class LoginForm extends Component {
 
     state = this.getInitialState();
@@ -8,24 +10,51 @@ class LoginForm extends Component {
     getInitialState() {
         return {
             email: '',
-            password: ''
-        }
+            password: '',
+            error: ''
+        };
+    }
+
+    isFormValid = () => {
+        return (
+            this.state.email && 
+            this.state.password
+        )
     }
 
     handleChange = e => {
         this.setState({
+            error: '',
             [e.target.name]: e.target.value
         });
     }
 
-    handleSubmit = e => {
+    handleSubmit = async e => {
         e.preventDefault();
-        this.setState(this.getInitialState());
+        if(!this.isFormValid()) return;
+        try {
+            const { email, password } = this.state;
+            await userService.login({ email, password });
+            this.setState(this.getInitialState(), () => {
+                this.props.handleSignupOrLogin();
+                this.props.history.push('/events');
+            });
+        } catch (error) {
+            this.setState({
+                email: '',
+                password: '',
+                error: error.message 
+            });
+        }
     }
 
     render () {
         return (
-            <form onSubmit={this.handleSubmit} className={styles.form}>
+        <section className={styles.section}>
+                 {
+                    this.state.error && <p>{this.state.error}</p>
+                }
+            <form onSubmit={this.handleSubmit}>
                 <fieldset>
                     <legend>Login Form</legend>
 
@@ -45,9 +74,10 @@ class LoginForm extends Component {
                         value={this.state.password}
                         onChange={this.handleChange}
                     />
-                    <button type="submit">Submit</button>
+                    <button disabled={!this.isFormValid()} type="submit">Submit</button>
                 </fieldset>
             </form>
+        </section>
         );
     }
 }
