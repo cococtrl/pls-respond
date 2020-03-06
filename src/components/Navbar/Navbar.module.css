@@ -1,9 +1,9 @@
 .navbar {
     display: flex;
     align-items: center;
-    height: 8rem;
+    height: 9rem;
     justify-content: space-around;
-    background-image: url("https://i.imgur.com/eAyDm5F.jpg?1");
+    background-image: url("https://i.imgur.com/wy5b0vg.jpg?3");
     background-size: cover;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
@@ -11,7 +11,6 @@
 .navbar h1 {
     font-family: 'Lacquer', sans-serif;
     font-size: 3rem;
-    text-shadow: 1px 1.5px 1px #F1E3F3;
 }
 
 .navbar ul {
@@ -23,13 +22,9 @@
     margin: 1rem;
 }
 
-.navbar h1:hover {
-    color: #DEFFFC;
-}
-
 .navbar a:hover {
-    color: #071013;
-    text-shadow: 1px 1.5px 1px #DEFFFC;
+    color: #DEFFFC;
+    text-shadow: 1px 1px 1px #DEFFFC;
 }
 
 .navbar a {
