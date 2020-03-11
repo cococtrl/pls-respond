@@ -10,7 +10,8 @@ const eventSchema = new Schema({
     description: String,
     addedBy: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     }
 }, { timestamps: true });
 

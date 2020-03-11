@@ -1,5 +1,13 @@
 const BASE_URL = '/api/events/'
 
+function getEvent() {
+    return fetch(BASE_URL + 'event').then(res => res.json());
+}
+
+function index() {
+    return fetch(BASE_URL).then(res => res.json());
+}
+
 function create(data) {
     return fetch(BASE_URL, {
         mehtod: 'POST',
@@ -13,5 +21,7 @@ function create(data) {
 }
 
 export default {
-    create
+    create,
+    index,
+    getEvent
 }

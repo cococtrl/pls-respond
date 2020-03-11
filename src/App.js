@@ -3,6 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
  
 import './App.css';
 import userService from './utils/userService';
+import eventService from './utils/eventService';
 
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -17,7 +18,9 @@ import Signup from './pages/Signup/Signup';
 class App extends Component {
 
   state = {
-    user: userService.getUser()
+    user: userService.getUser(),
+    events: [],
+    event: []
   }
 
   handleSignupOrLogin = () => {
@@ -28,6 +31,24 @@ class App extends Component {
     userService.logout();
     this.setState({ user: null });
   }
+
+handleGetEvents = async () => {
+  if(userService.getUser()) {
+    const {events} = await eventService.index();
+    this.setState({ events });
+  }
+}
+
+handleGetEvent = async () => {
+  const { event } = await eventService.getEvent();
+  this.setState({ event });
+}
+
+async componentDidMount() {
+  this.handleGetEvent();
+  this.handleGetEvents();
+  }
+
 
   render() {
     return (
@@ -40,7 +61,11 @@ class App extends Component {
             }/>
             <Route exact path="/events" render={props =>
             userService.getUser()
-            ? <Events {...props}/>
+            ? <Events 
+            {...props}
+            handleGetEvents={this.handleGetEvents}
+            events={this.state.events}
+            />
             : <Redirect to="/login" />
           }/>
             <Route exact path="/login" render={props => 

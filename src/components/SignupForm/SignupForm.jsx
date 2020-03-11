@@ -17,6 +17,9 @@ class SignupForm extends Component {
     }
 
     isFormValid = () => {
+        console.log(this.state.password);
+        console.log(this.state.passwordConfirm);
+        console.log(this.state.email);
         return(
             this.state.name &&
             this.state.email &&
@@ -32,13 +35,13 @@ class SignupForm extends Component {
         });
     }
 
-    handleSubmit = async e => {
+    handleSubmit = e => {
         e.preventDefault();
         if(!this.isFormValid()) return;
 
         try {
             const { name, email, password} = this.state;
-            await userService.signup({ name, email, password });
+             userService.signup({ name, email, password });
             this.setState(this.getInitialState(), () => {
                 this.props.handleSignupOrLogin();
                 this.props.history.push('/')
@@ -62,7 +65,7 @@ class SignupForm extends Component {
             }
             <form onSubmit={this.handleSubmit}>
                 <fieldset>
-                    <legend>Signup Form</legend>
+                    <h2>Signup</h2>
                     <label htmlFor="name">Full Name</label>
                     <input 
                         id="name" 

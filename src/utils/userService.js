@@ -33,6 +33,7 @@ function signup(user) {
         body: JSON.stringify(user)
     })
     .then(response => {
+        console.log(response)
         if(response.ok) {
             return response.json()
         } else {

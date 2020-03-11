@@ -56,8 +56,7 @@ class LoginForm extends Component {
                 }
             <form onSubmit={this.handleSubmit}>
                 <fieldset>
-                    <legend>Login Form</legend>
-
+                    <h2>Login</h2> 
                     <label htmlFor="email">Email</label>
                     <input 
                         id="email" 

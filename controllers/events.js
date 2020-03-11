@@ -2,12 +2,23 @@ const Event = require('../models/event');
 
 module.exports = {
     create,
-    index
+    index,
+    getEvent
 };
+
+async function getEvent(req, res) {
+    try {
+        const oneEvent = await Event.find({})
+        .sort('-createdAt').limit(3).populate('addedBy');
+        res.jason({ oneEvent });
+    } catch (error) {
+        res.status(400).json({err: 'bad request'})
+    }
+}
 
 async function index(req,res) {
     try {
-        const events = await Event.find({}).sort('-createdAt');
+        const events = await Event.find({}).sort('-createdAt').populate('addedBy');
         res.json({ events })
     } catch (error) {
         res.status(401).json({err: 'unauthorized'});

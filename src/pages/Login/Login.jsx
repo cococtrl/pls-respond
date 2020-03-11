@@ -5,7 +5,7 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 const Login = (props) => {
     return (
         <main>
-            <h1>Login</h1>
+            <h2></h2>
             <LoginForm {...props}/>
         </main>
     );

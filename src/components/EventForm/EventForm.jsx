@@ -38,6 +38,7 @@ class EventForm extends Component {
             const addedBy = userService.getUser()._id
             await userService.create({ title, description, addedBy });
             this.setState(this.getInitialState(), () => {
+                this.props.handleGetEvents();
                 this.props.history.push('/events')
             });
         } catch (error) {
