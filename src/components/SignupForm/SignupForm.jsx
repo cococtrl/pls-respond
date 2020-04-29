@@ -35,6 +35,7 @@ class SignupForm extends Component {
     handleSubmit = async e => {
         e.preventDefault();
         if(!this.isFormValid()) return;
+        //redirect to login page? or add message that user is signed up
         alert('form submitted');
         try {
             const { name, email, password} = this.state;
@@ -57,6 +58,9 @@ class SignupForm extends Component {
     render () {
         return (
         <section className={styles.section}>
+            {
+                this.state.error && <p>{this.state.error}</p>
+            }
             <form onSubmit={this.handleSubmit}>
                 <fieldset>
                     <h2>Signup</h2>
