@@ -24,12 +24,14 @@ class App extends Component {
   }
 
   handleSignupOrLogin = () => {
-    this.setState({ user: userService.getUser() })
+    this.setState({ user: userService.getUser() }, () => {
+      this.handleGetEvents();
+    })
   }
 
   handleLogout = () => {
     userService.logout();
-    this.setState({ user: null });
+    this.setState({ user: null, events: [] });
   }
 
 handleGetEvents = async () => {
@@ -57,7 +59,7 @@ async componentDidMount() {
         <div className="App-inner-container">
           <Switch>
             <Route exact path="/" render={props => 
-              <Home />
+              <Home getEvent={this.state.getEvent}/>
             }/>
             <Route exact path="/events" render={props =>
             userService.getUser()

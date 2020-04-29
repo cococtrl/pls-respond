@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import styles from './Events.module.css';
 import EventForm from '../../components/EventForm/EventForm';
 
 const Events = (props) => {
+    const [ formVisible, setVisibility ] = useState(false);
     return (
         <main>
             <h1>Events</h1>
+            <button onClick={() => setVisibility(!formVisible)}>
+                {formVisible ? 'Hide Form' : 'Show Form'}
+            </button>
             {
-                props.events.map(({title, description, _id}) => (
-                <section key={_id}>{title}
+                formVisible
+                && <EventForm {...props} />
+            }
+            {
+                props.events.map(({title, description, _id, addedBy}) => (
+                <section key={_id}>
                 <h1>{title}</h1>
                 <p>Description: {description}</p>
+                <small>Added By {addedBy.name}</small>
                 </section>
                 ))
             }
-            <EventForm {...props}/>
         </main>
-    )
-}
+    );
+};
 
 export default Events;

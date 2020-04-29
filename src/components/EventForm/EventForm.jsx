@@ -32,7 +32,7 @@ class EventForm extends Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        if(!this.isFormValid()) return;
+        if(this.isFormValid()) return;
         try {
             const { title, description } = this.state;
             const addedBy = userService.getUser()._id

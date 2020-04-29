@@ -10,7 +10,7 @@ async function getEvent(req, res) {
     try {
         const oneEvent = await Event.find({})
         .sort('-createdAt').limit(3).populate('addedBy');
-        res.jason({ oneEvent });
+        res.json({ oneEvent });
     } catch (error) {
         res.status(400).json({err: 'bad request'})
     }
@@ -19,7 +19,7 @@ async function getEvent(req, res) {
 async function index(req,res) {
     try {
         const events = await Event.find({}).sort('-createdAt').populate('addedBy');
-        res.json({ events })
+        res.json({ events });
     } catch (error) {
         res.status(401).json({err: 'unauthorized'});
     }
