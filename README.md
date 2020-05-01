@@ -4,7 +4,7 @@ Pls Respond is a social meadia app designed specifically to share public and pri
 
 ### Technologies used
 
-MongoDb, Express, React, and Node
+MongoDb, Express, React, and Node.js
 
 ## Screen Shots
 
@@ -12,4 +12,11 @@ MongoDb, Express, React, and Node
 
 ### Deployment
 
-This app is being hosted on heroku and can be found here: 
+Heroku: [Pls Respond Link](https://pls-respond.herokuapp.com/ "Pls Respond Heroku App")
+
+<!-- # Screenshots -->
+# Next Steps
+* Adding detail pages for events
+* Completing CRUD functionality
+* Connecting users to events
+* Adding features to events
