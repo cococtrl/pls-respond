@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
- 
-import './App.css';
-import userService from './utils/userService';
-import eventService from './utils/eventService';
 
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -13,14 +9,16 @@ import Events from './pages/Events/Events';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 
-
+import './App.css';
+import userService from './utils/userService';
+import eventService from './utils/eventService';
 
 class App extends Component {
 
   state = {
     user: userService.getUser(),
     events: [],
-    event: []
+    featuredEvents: []
   }
 
   handleSignupOrLogin = () => {
@@ -36,18 +34,18 @@ class App extends Component {
 
 handleGetEvents = async () => {
   if(userService.getUser()) {
-    const {events} = await eventService.index();
+    const { events } = await eventService.index();
     this.setState({ events });
   }
 }
 
-handleGetEvent = async () => {
-  const { event } = await eventService.getEvent();
-  this.setState({ event });
+handleGetFeaturedEvents = async () => {
+  const { featuredEvents } = await eventService.getFeatured();
+  this.setState({ featuredEvents });
 }
 
-async componentDidMount() {
-  this.handleGetEvent();
+componentDidMount() {
+  this.handleGetFeaturedEvents();
   this.handleGetEvents();
   }
 
@@ -58,13 +56,12 @@ async componentDidMount() {
         <Navbar handleLogout={this.handleLogout} />
         <div className="App-inner-container">
           <Switch>
-            <Route exact path="/" render={props => 
-              <Home getEvent={this.state.getEvent}/>
-            }/>
+            <Route exact path="/" render={props =>
+            <Home featuredEvents={this.state.featuredEvents}/>
+          }/>
             <Route exact path="/events" render={props =>
             userService.getUser()
-            ? <Events 
-            {...props}
+            ? <Events {...props}
             handleGetEvents={this.handleGetEvents}
             events={this.state.events}
             />

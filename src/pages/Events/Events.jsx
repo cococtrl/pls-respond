@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import styles from './Events.module.css';
+import styles from './Events.module.css';
 import EventForm from '../../components/EventForm/EventForm';
 
 const Events = (props) => {
@@ -15,12 +15,11 @@ const Events = (props) => {
                 && <EventForm {...props} />
             }
             {
-                props.events.map(({title, description, _id, addedBy}) => (
-                <section key={_id}>
-                <h1>{title}</h1>
-                <p>Description: {description}</p>
-                <small>Added By {addedBy.name}</small>
-                </section>
+                props.events.map(({title, _id, description}) => (
+                    <section key={_id}>
+                        <h1>{title}</h1>
+                        <p>Description: {description}</p>
+                    </section>
                 ))
             }
         </main>

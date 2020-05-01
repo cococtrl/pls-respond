@@ -3,14 +3,14 @@ const Event = require('../models/event');
 module.exports = {
     create,
     index,
-    getEvent
+    getFeatured
 };
 
-async function getEvent(req, res) {
+async function getFeatured(req, res) {
     try {
-        const oneEvent = await Event.find({})
+        const featuredEvents = await Event.find({})
         .sort('-createdAt').limit(3).populate('addedBy');
-        res.json({ oneEvent });
+        res.json({ featuredEvents });
     } catch (error) {
         res.status(400).json({err: 'bad request'})
     }

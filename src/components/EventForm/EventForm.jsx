@@ -11,7 +11,7 @@ class EventForm extends Component {
     getInitialState() {
         return {
             title: '',
-            desctiption: '',
+            description: '',
             error: ''
         };
     }
@@ -19,8 +19,8 @@ class EventForm extends Component {
     isFormValid = () => {
         return (
             this.state.title && 
-            this.state.desctiption
-        )
+            this.state.description
+        );
     }
 
     handleChange = e => {
@@ -32,7 +32,7 @@ class EventForm extends Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        if(this.isFormValid()) return;
+        if(!this.isFormValid()) return;
         try {
             const { title, description } = this.state;
             const addedBy = userService.getUser()._id
@@ -44,7 +44,7 @@ class EventForm extends Component {
         } catch (error) {
             this.setState({
                 title: '',
-                desctiption: '',
+                description: '',
                 error: error.message 
             });
         }
@@ -59,7 +59,6 @@ class EventForm extends Component {
             <form onSubmit={this.handleSubmit}>
                 <fieldset>
                     <legend>New Event Form</legend>
-
                     <label htmlFor="title">Title</label>
                     <input 
                         id="title" 

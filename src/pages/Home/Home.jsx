@@ -6,7 +6,7 @@ const Home = (props) => {
         <main className={styles.home}>
             <h1>Public Events:</h1>
             {
-                props.getEvents.map(({title, description, _id}) => (
+                props.featuredEvents.map(({title, description, _id}) => (
                  <section key={_id}>
                      <h1>{title}</h1>
                      <p>{description}</p>

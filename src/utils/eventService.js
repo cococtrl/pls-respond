@@ -1,7 +1,7 @@
-const BASE_URL = '/api/events/'
+const BASE_URL = '/api/events/';
 
-function getEvent() {
-    return fetch(BASE_URL + 'event').then(res => res.json());
+function getFeatured() {
+    return fetch(BASE_URL + 'featured').then(res => res.json());
 }
 
 function index() {
@@ -10,7 +10,7 @@ function index() {
 
 function create(data) {
     return fetch(BASE_URL, {
-        mehtod: 'POST',
+        method: 'POST',
         headers: new Headers({'Content-type': 'Application/json'}),
         body: JSON.stringify(data)
     })
@@ -23,5 +23,5 @@ function create(data) {
 export default {
     create,
     index,
-    getEvent
+    getFeatured
 }
